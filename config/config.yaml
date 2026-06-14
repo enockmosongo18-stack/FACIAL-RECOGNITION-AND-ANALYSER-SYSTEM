@@ -1,0 +1,75 @@
+# FACIAL RECOGNITION AND ANALYSER SYSTEM - Configuration File
+
+# General Settings
+project_name: "FACIAL RECOGNITION AND ANALYSER SYSTEM"
+version: "1.0.0"
+debug: true
+
+# Face Detection Settings
+face_detection:
+  model: "haarcascade"  # Options: haarcascade, dnn, mtcnn
+  scale_factor: 1.1
+  min_neighbors: 5
+  min_face_size: [20, 20]
+  confidence_threshold: 0.5
+
+# Face Recognition Settings
+face_recognition:
+  model: "dlib"  # Options: dlib, vggface2, facenet
+  face_encoding_model: "mmod_human_face_detector.dat"
+  distance_threshold: 0.6  # Lower = stricter matching
+  known_faces_database: "data/known_faces/"
+
+# Face Analysis Settings
+face_analysis:
+  detect_age: true
+  detect_gender: true
+  detect_emotion: true
+  detect_landmarks: true
+  age_model: "age_net.caffemodel"
+  gender_model: "gender_net.caffemodel"
+  emotion_model: "fer2013"
+
+# Dataset Settings
+dataset:
+  lfw_dataset_path: "data/lfw_dataset/"
+  lfw_url: "http://vis-www.cs.umass.edu/lfw/lfw.tgz"
+  auto_download: true
+  extract_faces: true
+
+# Model Settings
+models:
+  model_save_path: "models/pretrained_models/"
+  auto_download: true
+  use_gpu: true
+
+# Performance Settings
+performance:
+  batch_size: 32
+  num_workers: 4
+  max_image_size: [1280, 720]
+  enable_caching: true
+
+# Logging Settings
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  log_file: "logs/facial_project.log"
+  log_format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+
+# Flask Web App Settings
+flask:
+  host: "0.0.0.0"
+  port: 5000
+  debug: true
+  max_content_length: 16777216  # 16MB
+
+# Database Settings (for storing face encodings)
+database:
+  db_type: "sqlite"  # Options: sqlite, postgresql, mongodb
+  db_path: "data/facial_database.db"
+
+# Security Settings
+security:
+  require_authentication: false
+  enable_encryption: true
+  allowed_image_formats: ["jpg", "jpeg", "png", "bmp"]
